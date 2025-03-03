@@ -116,7 +116,7 @@ async (conn, mek, m, { from, reply }) => {
 });
 
 cmd({
-    pattern: "🥺",
+    pattern: "🙂",
     desc: "Displays a dynamic edit msg for fun.",
     category: "tools",
     react: "😶",
@@ -232,7 +232,7 @@ async (conn, mek, m, { from, reply }) => {
 });
 
 cmd({
-    pattern: "😫",
+    pattern: "system",
     desc: "Displays a dynamic edit msg for fun.",
     category: "tools",
     react: "🤔",
@@ -240,10 +240,9 @@ cmd({
 },
 async (conn, mek, m, { from, reply }) => {
     try {
-        const loadingMessage = await conn.sendMessage(from, { text: '🤔' });
+        const loadingMessage = await conn.sendMessage(from, { text: '☺️' });
         const emojiMessages = [
-            "😕", "😟", "😵", "🤔", "😖", 
-            "😲", "😦", "🤷", "🤷‍♂️", "🤷‍♀️"
+            "*`𝐇𝐞𝐥𝐥𝐨𝐰`*", "*`𝐈𝐦 𝐐𝐮𝐞𝐞𝐧 𝐬𝐚𝐝𝐮`*", "*`𝐬𝐲𝐬𝐭𝐞𝐦 𝐜𝐨𝐧𝐯𝐞𝐫𝐭`*", "*`𝐓𝐡𝐚𝐧𝐤 𝐟𝐨𝐫 𝐲𝐨𝐮𝐫 𝐫𝐞𝐪𝐯𝐞𝐬𝐭`*", "*`© 𝐌𝐫 𝐝𝐢𝐧𝐞𝐬𝐡 𝐨𝐟𝐜`*"
         ];
 
         for (const line of emojiMessages) {
@@ -308,7 +307,7 @@ async (conn, mek, m, { from, reply }) => {
 });
 
 cmd({
-    pattern: "nikal",
+    pattern: "Dinesh",
     desc: "Displays a dynamic edit msg for fun.",
     category: "tools",
     react: "🗿",
@@ -316,7 +315,7 @@ cmd({
 },
 async (conn, mek, m, { from, reply }) => {
     try {
-        const loadingMessage = await conn.sendMessage(from, { text: 'ALI-XMD☠️' });
+        const loadingMessage = await conn.sendMessage(from, { text: 'QUEEN-SADU MD☠️' });
         
         // Define the ASCII art messages
         const asciiMessages = [
@@ -346,4 +345,4 @@ async (conn, mek, m, { from, reply }) => {
     }
 });
 
-// > JawadTechX 
+// > Mr dinesh 
