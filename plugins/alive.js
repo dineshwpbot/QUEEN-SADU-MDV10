@@ -3,7 +3,7 @@ const os = require("os");
 const { runtime } = require('../lib/functions');
 
 // Video capture URL (ඔයාගේ capture video එකේ link එක මෙහි දැමන්න)
-const videoUrl = 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/4f0311f51ae8e821898be914de870872_1739639190494.mp4';
+const videoUrl = 'https://files.catbox.moe/kibj2k.mp4';
 
 // Voice clip URLs (Random එකක් යවයි)
 const voiceUrls = [
