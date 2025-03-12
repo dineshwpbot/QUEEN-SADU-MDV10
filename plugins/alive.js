@@ -3,13 +3,11 @@ const os = require("os");
 const { runtime } = require('../lib/functions');
 
 // Video clip URL (පළවෙනිව යවන video එක)
-const videoUrl = 'YOUR_VIDEO_URL_HERE';
+const videoUrl = 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/4f0311f51ae8e821898be914de870872_1739639190494.mp4';
 
 // Voice clip URLs (Random එකක් යවයි)
 const voiceUrls = [
-    'YOUR_VOICE_URL_1_HERE',
-    'YOUR_VOICE_URL_2_HERE',
-    'YOUR_VOICE_URL_3_HERE'
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/ssstik.io_1734217080374.mp3'
 ];
 
 cmd({
