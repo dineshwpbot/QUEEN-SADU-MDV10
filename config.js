@@ -33,7 +33,7 @@ OWNER_NAME: process.env.OWNER_NAME || "𝐌𝐑 𝐃𝐈𝐍𝐄𝐒𝐇",
 // add bot owner name
 DESCRIPTION: process.env.DESCRIPTION || "*© ᴩᴏᴡᴇʀᴇᴅ ʙʏ ᴍʀ ᴅɪɴᴇꜱʜ ᴏꜰᴄ*",
 // add bot owner name    
-ALIVE_IMG: process.env.ALIVE_IMG || "`https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg`",
+ALIVE_IMG: process.env.ALIVE_IMG || "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg",
 // add img for alive msg
 LIVE_MSG: process.env.LIVE_MSG || "> Zinda Hun Yar *QUEEN-SADU*⚡",
 // add alive msg here 
