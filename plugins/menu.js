@@ -28,7 +28,7 @@ const voiceList = [
 cmd({
     pattern: "menu2",
     react: "🛸",
-    alias: ["panel","commands","sadu","start"],
+    alias: ["panel", "commands"],
     desc: "Get bot's command list.",
     category: "main",
     use: '.menu',
@@ -38,24 +38,20 @@ cmd({
         // Randomly select a voice file
         const randomVoice = voiceList[Math.floor(Math.random() * voiceList.length)];
 
-        // Channel view link (example, replace with actual channel URL)
-        const channelViewLink = 'https://whatsapp.com/channel/0029Vb0Anqe9RZAcEYc2fT2c';
-
-        // Send the selected random voice message with channel view link
+        // Send the selected random voice message
         await conn.sendMessage(from, { audio: { url: randomVoice }, ptt: true });
 
-        // Create a short menu text with channel view link
+        // Create a short menu text
         let madeMenu = `*HELLO WELCOME TO QUEEN SADU MD WHATSAPP BOT* 
         *ᴡᴇʟᴄᴏᴍᴇ ${pushname}*
         *ᴏɴʟɪɴᴇ ᴠᴇʀsɪᴏɴ*: *2.0.0*
         
-         𝐌𝐑 𝐃𝐈𝐍𝐄𝐒𝐇 𝐎𝐅𝐂
-        
-        📢 *JOIN OUR CHANNEL* 📢
-        👉 [Channel View](${channelViewLink})
+        ᴇxᴇᴄᴜᴛᴇ ᴄᴏᴍᴍᴀɴᴅs:
+        update comming 
+       
         `;
 
-        // Send the image and menu text after voice, with channel view link
+        // Send the image and menu text after voice
         await conn.sendMessage(from, { image: { url: config.ALIVE_IMG }, caption: madeMenu }, { quoted: mek });
 
     } catch (e) {
