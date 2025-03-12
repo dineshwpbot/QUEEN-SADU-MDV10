@@ -5,11 +5,8 @@ const path = require('path');
 
 // ✅ Voice list එක (ඔබට මෙය සංස්කරණය කළ හැක)
 const voiceList = [
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%201.mp3',
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%202.mp3',
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%203.mp3',
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%204.mp3',
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%205.mp3'
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/alive.mp3',
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/menu.mp3'
 ];
 
 // ✅ Auto Reply Trigger Message (මෙය වෙනස් කරන්න)
