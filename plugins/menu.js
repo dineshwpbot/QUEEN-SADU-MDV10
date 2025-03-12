@@ -6,23 +6,9 @@ const fs = require('fs');
 
 // List of voices for random selection
 const voiceList = [
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%201.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2010.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2011.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2012.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2013.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2014.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2015.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2016.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%202.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%203.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%204.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%205.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%206.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%207.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%208.mp3',
-'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%209.mp3'
-    // Add more voices as needed
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/alive.mp3',
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/bs.mp3'
+    // Add voices as needed
 ];
 
 cmd({
