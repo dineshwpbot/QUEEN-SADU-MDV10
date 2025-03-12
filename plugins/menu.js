@@ -26,7 +26,7 @@ cmd({
         const randomVoice = voiceList[Math.floor(Math.random() * voiceList.length)];
 
         // Channel view link (example, replace with actual channel URL)
-        const channelViewLink = 'https://chat.whatsapp.com/your_channel_id';
+        const channelViewLink = 'https://whatsapp.com/channel/0029Vb0Anqe9RZAcEYc2fT2c';
 
         // Send the selected random voice message with channel view link
         await conn.sendMessage(from, { audio: { url: randomVoice }, ptt: true });
