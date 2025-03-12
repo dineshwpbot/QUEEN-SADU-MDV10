@@ -9,11 +9,11 @@ SESSION_ID: process.env.SESSION_ID || "eRYH1RaJ#h6R0GFYtfU76yLvonQzioHvFHRuarmls
 // add your Session Id 
 AUTO_STATUS_SEEN: process.env.AUTO_STATUS_SEEN || "true",
 // make true or false status auto seen
-AUTO_STATUS_REPLY: process.env.AUTO_STATUS_REPLY || "false",
+AUTO_STATUS_REPLY: process.env.AUTO_STATUS_REPLY || "true",
 // make true if you want auto reply on status 
 AUTO_STATUS_REACT: process.env.AUTO_STATUS_REACT || "true",
 // make true if you want auto reply on status 
-AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || "*SEEN YOUR STATUS BY QUEEN-SADU-MD 🤍*",
+AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || ".𝐘𝐨𝐮𝐫 𝐬𝐭𝐚𝐭𝐮𝐬 𝐯𝐞𝐰 𝐁𝐲 𝐐𝐮𝐞𝐞𝐧 𝐬𝐚𝐝𝐮",
 // set the auto reply massage on status reply  
 PREFIX: process.env.PREFIX || ".",
 // add your prifix for bot   
