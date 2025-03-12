@@ -13,7 +13,7 @@ async function scrapeAviatorData() {
     const page = await browser.newPage();
 
     try {
-        await page.goto(`https://1xbet.com/aviator?user=${aviatorConfig.1xbetID}`, {
+        await page.goto(`https://1xbet.com/aviator?user=${aviatorConfig["1xbetID"]}`, {
             waitUntil: 'load',
             timeout: 60000
         });
