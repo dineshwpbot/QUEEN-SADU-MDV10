@@ -5,7 +5,7 @@ const voiceLinks = [
 'https://files.catbox.moe/4i7ccz.mp3',
 'https://files.catbox.moe/c0rswx.mp3',
 'https://files.catbox.moe/hgyeth.mp3',
-'https://files.catbox.moe/lleedr.mp3'',
+'https://files.catbox.moe/lleedr.mp3',
 'https://files.catbox.moe/5q1il0.mp3',
 'https://files.catbox.moe/is3w5r.mp3',
 'https://files.catbox.moe/rmb9hb.mp3',
@@ -23,7 +23,7 @@ const voiceLinks = [
 cmd({
     pattern: "list",
     react: "🛸",
-    alias: ["Seen Your status Queen sadu", "list", "commands"],
+    alias: ["Seen Your status Queen sadu", "list", "music"],
     desc: "Get bot's command list.",
     category: "main",
     use: '.menu3',
