@@ -5,7 +5,7 @@ const moment = require("moment");
 const aviatorConfig = {
     "1xbetID": "1164887731",  // 1xBet ID එක මෙහි ඇතුලත් කරන්න.
     "signalsPerHour": 20,
-    "status": false  // Default status එක off
+    "status": true // Default status එක off
 };
 
 async function scrapeAviatorData() {
