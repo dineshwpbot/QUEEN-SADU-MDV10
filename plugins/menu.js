@@ -5,7 +5,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 // List of voices for random selection
-const voiceList = []
+const voiceList = [
 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%201.mp3',
 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2010.mp3',
 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2011.mp3',
@@ -28,7 +28,7 @@ const voiceList = []
 cmd({
     pattern: "menu2",
     react: "🛸",
-    alias: ["panel", "commands"],
+    alias: ["panel","commands","sadu","start"],
     desc: "Get bot's command list.",
     category: "main",
     use: '.menu',
