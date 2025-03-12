@@ -34,8 +34,7 @@ async (conn, mek, m, { from, l, quoted, body, isCmd, umarmd, args, q, isGroup, s
     try {
         // Prepare menu text
         let madeMenu = `👨🏻‍💻 *${pushname}* 
-        \nHELLOW HOW ARE YOU ?
-          𝐌𝐑 𝐃𝐈𝐍𝐄𝐒𝐇 𝐎𝐅𝐂`;
+        \nHELLOW HOW ARE YOU`;
 
         // Send the list message
         await conn.sendMessage(from, { text: madeMenu });
