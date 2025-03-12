@@ -2,6 +2,16 @@ const { cmd, commands } = require('../command');
 const os = require("os");
 const { runtime } = require('../lib/functions');
 
+// Video clip URL (පළවෙනිව යවන video එක)
+const videoUrl = 'YOUR_VIDEO_URL_HERE';
+
+// Voice clip URLs (Random එකක් යවයි)
+const voiceUrls = [
+    'YOUR_VOICE_URL_1_HERE',
+    'YOUR_VOICE_URL_2_HERE',
+    'YOUR_VOICE_URL_3_HERE'
+];
+
 cmd({
     pattern: "alive",
     alias: ["status", "runtime", "uptime"],
@@ -10,8 +20,11 @@ cmd({
     react: "📟",
     filename: __filename
 },
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+async (conn, mek, m, { from, quoted, reply }) => {
     try {
+        // Random voice එක තෝරාගන්නවා
+        const randomVoice = voiceUrls[Math.floor(Math.random() * voiceUrls.length)];
+
         // System status message
         const status = `╭━━〔 *QUEEN-SADU-MD* 〕━━┈⊷
 ┃◈╭─────────────·๏
@@ -29,14 +42,10 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 
 > © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍʀ ᴅɪɴᴇꜱʜ`;
 
-        // Voice message URL (PTT voice message)
-        const voiceUrl = 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/alive.mp3';
-
-        // 1. Send PTT Voice First (With Channel View Link)
-        const voiceMessage = await conn.sendMessage(from, {
-            audio: { url: voiceUrl },
-            mimetype: 'audio/mpeg',
-            ptt: true, // Send as voice message (PTT)
+        // 1. Send Video First
+        const videoMessage = await conn.sendMessage(from, {
+            video: { url: videoUrl },
+            caption: "🚀 *I'm Alive!*",
             contextInfo: {
                 forwardingScore: 999,
                 isForwarded: true,
@@ -48,12 +57,31 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             }
         }, { quoted: mek });
 
-        // Wait for 2 seconds before sending image + text
+        // Wait for 3 seconds before sending voice
+        await new Promise(resolve => setTimeout(resolve, 3000));
+
+        // 2. Send Random Voice (PTT Voice Message)
+        const voiceMessage = await conn.sendMessage(from, {
+            audio: { url: randomVoice },
+            mimetype: 'audio/mpeg',
+            ptt: true,
+            contextInfo: {
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363357105376275@g.us@newsletter',
+                    newsletterName: 'ᴍʀ ᴅɪɴᴇꜱʜ',
+                    serverMessageId: 143
+                }
+            }
+        }, { quoted: videoMessage });
+
+        // Wait for 2 seconds before sending image + caption
         await new Promise(resolve => setTimeout(resolve, 2000));
 
-        // 2. Send Image + Caption After Voice
+        // 3. Send Image + Caption After Voice
         await conn.sendMessage(from, {
-            image: { url: `https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg` }, // Image URL
+            image: { url: `https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg` },
             caption: status,
             contextInfo: {
                 mentionedJid: [m.sender],
@@ -69,6 +97,6 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 
     } catch (e) {
         console.error("Error in alive command:", e);
-        reply(`An error occurred: ${e.message}`);
+        reply(`❌ *Error Occurred:* ${e.message}`);
     }
 });
