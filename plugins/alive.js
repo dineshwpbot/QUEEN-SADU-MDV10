@@ -2,12 +2,14 @@ const { cmd, commands } = require('../command');
 const os = require("os");
 const { runtime } = require('../lib/functions');
 
-// Video clip URL (පළවෙනිව යවන video එක)
+// Video capture URL (ඔයාගේ capture video එකේ link එක මෙහි දැමන්න)
 const videoUrl = 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/4f0311f51ae8e821898be914de870872_1739639190494.mp4';
 
 // Voice clip URLs (Random එකක් යවයි)
 const voiceUrls = [
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/ssstik.io_1734217080374.mp3'
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/alive.mp3',
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/menu.mp3',
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/hi.mp3'
 ];
 
 cmd({
@@ -40,10 +42,12 @@ async (conn, mek, m, { from, quoted, reply }) => {
 
 > © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍʀ ᴅɪɴᴇꜱʜ`;
 
-        // 1. Send Video First
+        // 1. Send Video Capture Style (Recorded Effect)
         const videoMessage = await conn.sendMessage(from, {
             video: { url: videoUrl },
-            caption: "🚀 *I'm Alive!*",
+            mimetype: 'video/mp4', // Ensure video format
+            caption: "📹 *I'm Alive!*",
+            jpegThumbnail: Buffer.alloc(0), // Simulate a capture effect (remove preview)
             contextInfo: {
                 forwardingScore: 999,
                 isForwarded: true,
