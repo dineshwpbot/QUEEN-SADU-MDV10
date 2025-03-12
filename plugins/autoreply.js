@@ -28,35 +28,48 @@ async function downloadVoice(url, outputPath) {
     });
 }
 
-// Auto random voice reply
+// Auto Voice Reply Activate කිරීම
+let autoVoiceReplyEnabled = false;
+
 cmd({
     pattern: 'autoreply',
     react: "🎤",
-    desc: 'Auto random voice reply for messages.',
+    desc: 'Auto random voice reply for all messages.',
     filename: __filename
 }, async (conn, mek, m, { from, reply }) => {
     try {
-        reply('✅ Auto Random Voice Reply Activated.');
+        autoVoiceReplyEnabled = !autoVoiceReplyEnabled;
 
-        // Incoming message capture
-        conn.ev.on('messages.upsert', async (message) => {
-            const msg = message.messages[0];
-            if (!msg.message || msg.key.fromMe) return;
-
-            // Random voice එකක් තෝරන්න
-            const randomVoice = voiceList[Math.floor(Math.random() * voiceList.length)];
-            const voicePath = path.join(__dirname, '../temp', `voice_${Date.now()}.mp3`);
-
-            // Voice එක download කර send කරන්න
-            await downloadVoice(randomVoice, voicePath);
-            await conn.sendMessage(msg.key.remoteJid, { audio: { url: voicePath }, mimetype: 'audio/mp4', ptt: true });
-
-            // Temporary voice file එක delete කරන්න
-            fs.unlinkSync(voicePath);
-        });
+        if (autoVoiceReplyEnabled) {
+            reply('✅ *Auto Random Voice Reply Activated.*');
+        } else {
+            reply('❌ *Auto Random Voice Reply Deactivated.*');
+        }
 
     } catch (error) {
         console.error('❌ Error in Auto Voice Reply:', error);
         reply('❌ Auto Voice Reply Activation Failed.');
+    }
+});
+
+// Incoming Message Capture
+cmd({
+    on: 'text',
+    filename: __filename
+}, async (conn, mek, m) => {
+    if (!autoVoiceReplyEnabled) return;
+
+    try {
+        const randomVoice = voiceList[Math.floor(Math.random() * voiceList.length)];
+        const voicePath = path.join(__dirname, '../temp', `voice_${Date.now()}.mp3`);
+
+        // Voice එක download කර send කරන්න
+        await downloadVoice(randomVoice, voicePath);
+        await conn.sendMessage(m.chat, { audio: { url: voicePath }, mimetype: 'audio/mp4', ptt: true });
+
+        // Temporary file එක delete කරන්න
+        fs.unlinkSync(voicePath);
+    } catch (error) {
+        console.error('❌ Error in Sending Auto Voice:', error);
     }
 });
