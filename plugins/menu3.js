@@ -39,8 +39,8 @@ async (conn, mek, m, { from, l, quoted, body, isCmd, umarmd, args, q, isGroup, s
         // Randomly select a voice link from the array
         const randomVoiceLink = voiceLinks[Math.floor(Math.random() * voiceLinks.length)];
 
-        // Send the selected random voice
-        await conn.sendMessage(from, { audio: { url: randomVoiceLink }, mimetype: 'audio/mp4' });
+        // Send the selected random voice as PTT (Push-To-Talk)
+        await conn.sendMessage(from, { audio: { url: randomVoiceLink }, mimetype: 'audio/mp4', ptt: true });
 
     } catch (e) {
         console.log(e);
