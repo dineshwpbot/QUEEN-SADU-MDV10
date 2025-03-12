@@ -6,9 +6,9 @@ const fs = require('fs');
 
 // List of voices for random selection
 const voiceList = [
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/alive.mp3',
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/menu.mp3',
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/bs.mp3',
+    'path/to/voice1.ogg',
+    'path/to/voice2.ogg',
+    'path/to/voice3.ogg',
     // Add more voices as needed
 ];
 
@@ -25,19 +25,22 @@ cmd({
         // Randomly select a voice file
         const randomVoice = voiceList[Math.floor(Math.random() * voiceList.length)];
 
-        // Send the selected random voice message
+        // Channel view link (example, replace with actual channel URL)
+        const channelViewLink = 'https://chat.whatsapp.com/your_channel_id';
+
+        // Send the selected random voice message with channel view link
         await conn.sendMessage(from, { audio: { url: randomVoice }, ptt: true });
 
-        // Create a short menu text
+        // Create a short menu text with channel view link
         let madeMenu = `*HELLO WELCOME TO QUEEN SADU MD WHATSAPP BOT* 
         *ᴡᴇʟᴄᴏᴍᴇ ${pushname}*
-        *ᴏɴʟɪɴᴇ ᴠᴇʀsɪᴏɴ*: *2.0.0*
+        *MR DINESH OFC*
         
-        please send me menu command 
-        
+        📢 *JOIN OUR CHANNEL* 📢
+        👉 [Channel View](${channelViewLink})
         `;
 
-        // Send the image and menu text after voice
+        // Send the image and menu text after voice, with channel view link
         await conn.sendMessage(from, { image: { url: config.ALIVE_IMG }, caption: madeMenu }, { quoted: mek });
 
     } catch (e) {
