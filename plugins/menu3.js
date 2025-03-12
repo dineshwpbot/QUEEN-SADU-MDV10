@@ -2,16 +2,28 @@ const { cmd, commands } = require('../command');
 
 // Voice links (hosted MP3 URLs)
 const voiceLinks = [
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/alive.mp3',  // Add voice link 1
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/gm.mp3',  // Add voice link 2
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/gn.mp3',  // Add voice link 3
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/bs.mp3'   // Add voice link 4
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%201.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2010.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2011.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2012.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2013.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2014.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2015.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%2016.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%202.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%203.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%204.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%205.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%206.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%207.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%208.mp3',
+'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%209.mp3'
 ];
 
 cmd({
     pattern: "list",
     react: "🛸",
-    alias: ["panel", "list", "commands"],
+    alias: ["𝐘𝐨𝐮𝐫 𝐬𝐭𝐚𝐭𝐮𝐬 𝐯𝐞𝐰 𝐁𝐲 𝐐𝐮𝐞𝐞𝐧 𝐬𝐚𝐝𝐮", "list", "commands"],
     desc: "Get bot's command list.",
     category: "main",
     use: '.menu3',
@@ -22,16 +34,7 @@ async (conn, mek, m, { from, l, quoted, body, isCmd, umarmd, args, q, isGroup, s
     try {
         // Prepare menu text
         let madeMenu = `👨🏻‍💻 *${pushname}* 
-        \nQueen Sadu Bot Menu එකට පිළිගනිමු
-
-        📜 *Commands List:*
-        - .play: YouTube එකේ Audio Download කරන්න
-        - .song: YouTube එකේ song එක Download කරන්න
-        - .video: YouTube එකේ Video Download කරන්න
-        - .sticker: Photo එක sticker එකක් ලෙස Convert කරන්න
-        - .alive: Bot status එක බලන්න
-        - .ping: Bot speed එක බලන්න
-        - .menu: Main menu`;
+        \n𝐌𝐑 𝐃𝐈𝐍𝐄𝐒𝐇 𝐎𝐅𝐂`;
 
         // Send the list message
         await conn.sendMessage(from, { text: madeMenu });
