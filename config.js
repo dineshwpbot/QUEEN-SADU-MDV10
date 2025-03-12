@@ -13,7 +13,7 @@ AUTO_STATUS_REPLY: process.env.AUTO_STATUS_REPLY || "true",
 // make true if you want auto reply on status 
 AUTO_STATUS_REACT: process.env.AUTO_STATUS_REACT || "true",
 // make true if you want auto reply on status 
-AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || ".𝐘𝐨𝐮𝐫 𝐬𝐭𝐚𝐭𝐮𝐬 𝐯𝐞𝐰 𝐁𝐲 𝐐𝐮𝐞𝐞𝐧 𝐬𝐚𝐝𝐮",
+AUTO_STATUS_MSG: process.env.AUTO_STATUS_MSG || ".Seen Your status Queen sadu",
 // set the auto reply massage on status reply  
 PREFIX: process.env.PREFIX || ".",
 // add your prifix for bot   
