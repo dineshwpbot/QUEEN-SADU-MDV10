@@ -7,7 +7,8 @@ const fs = require('fs');
 // List of voices for random selection
 const voiceList = [
     'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/alive.mp3',
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/bs.mp3'
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/bs.mp3',
+    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/adobe%201.mp3'
     // Add voices as needed
 ];
 
