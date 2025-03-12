@@ -6,9 +6,23 @@ const fs = require('fs');
 
 // List of voices for random selection
 const voiceList = [
-    'path/to/voice1.ogg',
-    'path/to/voice2.ogg',
-    'path/to/voice3.ogg',
+    'https://files.catbox.moe/ciierd.mp3',
+    'https://files.catbox.moe/c0rswx.mp3',
+    'https://files.catbox.moe/ed46vg.mp3',
+    'https://files.catbox.moe/r59jbk.mp3',
+    'https://files.catbox.moe/lleedr.mp3',
+    'https://files.catbox.moe/6pzpfr.mp3',
+    'https://files.catbox.moe/94f3ah.mp3',
+    'https://files.catbox.moe/iso3w5r.mp3',
+    'https://files.catbox.moe/3arfe3.mp3',
+    'https://files.catbox.moe/hgyeth.mp3',
+    'https://files.catbox.moe/dh3724.mp3',
+    'https://files.catbox.moe/5q1il0.mp3',
+    'https://files.catbox.moe/rmb9hb.mp3',
+    'https://files.catbox.moe/vazu0l.mp3',
+    'https://files.catbox.moe/u6yge7.mp3',
+    'https://files.catbox.moe/4i7ccz.mp3'
+    
     // Add more voices as needed
 ];
 
