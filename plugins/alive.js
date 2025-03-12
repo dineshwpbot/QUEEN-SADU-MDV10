@@ -1,16 +1,6 @@
-const { cmd } = require('../command');
+const { cmd, commands } = require('../command');
 const os = require("os");
 const { runtime } = require('../lib/functions');
-
-// ✅ Video capture URL (Video එක මෙහි දමන්න)
-const videoUrl = 'https://files.catbox.moe/kibj2k.mp4';
-
-// ✅ Voice clip URLs (Random එකක් යවයි)
-const voiceUrls = [
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/alive.mp3',
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/menu.mp3',
-    'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/hi.mp3'
-];
 
 cmd({
     pattern: "alive",
@@ -20,65 +10,65 @@ cmd({
     react: "📟",
     filename: __filename
 },
-async (conn, mek, m, { from, reply }) => {
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        // ✅ Random voice එක තෝරාගන්න (Ensure proper selection)
-        const randomVoice = voiceUrls[Math.floor(Math.random() * voiceUrls.length)];
-
-        // ✅ System status message
+        // System status message
         const status = `╭━━〔 *QUEEN-SADU-MD* 〕━━┈⊷
-┃◈ *⏳ Uptime:* ${runtime(process.uptime())}
-┃◈ *📟 RAM Usage:* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${(os.totalmem() / 1024 / 1024).toFixed(2)}MB
-┃◈ *⚙️ HostName:* ${os.hostname()}
-┃◈ *👨‍💻 Owner:* ᴍʀ ᴅɪɴᴇꜱʜ
-┃◈ *🧬 Version:* V2 BETA
-╰────────────────────
+┃◈╭─────────────·๏
+┃◈┃• *⏳Uptime*:  ${runtime(process.uptime())} 
+┃◈┃• *📟 Ram usage*: ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${(os.totalmem() / 1024 / 1024).toFixed(2)}MB
+┃◈┃• *⚙️ HostName*: ${os.hostname()}
+┃◈┃• *👨‍💻 Owner*: ᴍʀ ᴅɪɴᴇꜱʜ
+┃◈┃• *🧬 Version*: V2 BETA
+┃◈└───────────┈⊷
+╰──────────────┈⊷
 
-  𝐐𝐮𝐞𝐞𝐧 𝐒𝐚𝐝𝐮 𝐢𝐬 𝐚𝐥𝐢𝐯𝐞 𝐧𝐨𝐰! 🎉
+  𝐪𝐮𝐞𝐞𝐧 𝐬𝐚𝐝𝐮 programing.𝐢𝐦 𝐚𝐥𝐢𝐯𝐞 𝐧𝐨𝐰. 
 
-🔗 https://whatsapp.com/channel/0029Vb0Anqe9RZAcEYc2fT2c`;
+  https://whatsapp.com/channel/0029Vb0Anqe9RZAcEYc2fT2c
 
-        // ✅ 1. Send Video Capture Style (Fixed recorded style effect)
-        const videoMessage = await conn.sendMessage(from, {
-            video: { url: videoUrl },
-            mimetype: 'video/mp4',
-            caption: "📹 *I'm Alive!*",
-            jpegThumbnail: Buffer.from(''), // Empty buffer for capture style effect
+> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍʀ ᴅɪɴᴇꜱʜ`;
+
+        // Voice message URL (PTT voice message)
+        const voiceUrl = 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/alive.mp3';
+
+        // 1. Send PTT Voice First (With Channel View Link)
+        const voiceMessage = await conn.sendMessage(from, {
+            audio: { url: voiceUrl },
+            mimetype: 'audio/mpeg',
+            ptt: true, // Send as voice message (PTT)
             contextInfo: {
                 forwardingScore: 999,
-                isForwarded: true
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363357105376275@g.us@newsletter',
+                    newsletterName: 'ᴍʀ ᴅɪɴᴇꜱʜ',
+                    serverMessageId: 143
+                }
             }
         }, { quoted: mek });
 
-        // 🕒 Wait 3 seconds before sending voice
-        await new Promise(resolve => setTimeout(resolve, 3000));
-
-        // ✅ 2. Send Random Voice (Ensure random works properly)
-        const voiceMessage = await conn.sendMessage(from, {
-            audio: { url: randomVoice },
-            mimetype: 'audio/mpeg',
-            ptt: true, // Send as voice (PTT)
-            contextInfo: {
-                forwardingScore: 999,
-                isForwarded: true
-            }
-        }, { quoted: videoMessage });
-
-        // 🕒 Wait 2 seconds before sending image
+        // Wait for 2 seconds before sending image + text
         await new Promise(resolve => setTimeout(resolve, 2000));
 
-        // ✅ 3. Send Image + Caption (Final status message)
+        // 2. Send Image + Caption After Voice
         await conn.sendMessage(from, {
-            image: { url: 'https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg' },
+            image: { url: `https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg` }, // Image URL
             caption: status,
             contextInfo: {
+                mentionedJid: [m.sender],
                 forwardingScore: 999,
-                isForwarded: true
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363357105376275@g.us@newsletter',
+                    newsletterName: 'ᴍʀ ᴅɪɴᴇꜱʜ',
+                    serverMessageId: 143
+                }
             }
         }, { quoted: voiceMessage });
 
     } catch (e) {
         console.error("Error in alive command:", e);
-        reply(`❌ *Error Occurred:* ${e.message}`);
+        reply(`An error occurred: ${e.message}`);
     }
 });
