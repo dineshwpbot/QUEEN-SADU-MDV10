@@ -23,7 +23,7 @@ const voiceLinks = [
 cmd({
     pattern: "list",
     react: "🛸",
-    alias: ["Seen Your status Queen sadu", "list", "music"],
+    alias: ["✓", "list", "music"],
     desc: "Get bot's command list.",
     category: "main",
     use: '.menu3',
@@ -34,7 +34,8 @@ async (conn, mek, m, { from, l, quoted, body, isCmd, umarmd, args, q, isGroup, s
     try {
         // Prepare menu text
         let madeMenu = `👨🏻‍💻 *${pushname}* 
-        \n𝐌𝐑 𝐃𝐈𝐍𝐄𝐒𝐇 𝐎𝐅𝐂`;
+        \nHELLOW HOW ARE YOU ?
+          𝐌𝐑 𝐃𝐈𝐍𝐄𝐒𝐇 𝐎𝐅𝐂`;
 
         // Send the list message
         await conn.sendMessage(from, { text: madeMenu });
