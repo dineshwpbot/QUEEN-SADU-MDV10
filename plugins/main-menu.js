@@ -1,7 +1,6 @@
-const config = require('../config')
 const { cmd, commands } = require('../command');
-const os = require("os")
-const { runtime } = require('../lib/functions')
+const { config } = require('../config');
+const axios = require('axios');
 
 cmd({
     pattern: "menu",
@@ -11,72 +10,201 @@ cmd({
     category: "menu",
     react: "⚡",
     filename: __filename
-}, async (conn, mek, m, { from, quoted, reply }) => {
+},
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        // ✅ **Step 1: Send Voice Message First with Channel View**
-        await conn.sendMessage(from, {
-            audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
-            mimetype: 'audio/mp4',
-            ptt: true,
-            contextInfo: {
-                externalAdReply: {
-                    title: "Join Our Channel",
-                    body: "Click here to view",
-                    thumbnailUrl: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg",
-                    mediaType: 1,
-                    mediaUrl: "https://whatsapp.com/channel/120363354023106128",
-                    sourceUrl: "https://whatsapp.com/channel/120363354023106128"
-                }
-            }
-        }, { quoted: mek });
+        // First message (Voice + Channel View Button)
+        let menuMessage = await conn.sendMessage(
+            from,
+            {
+                audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
+                mimetype: 'audio/mp4',
+                ptt: true
+            },
+            { quoted: mek }
+        );
 
-        // ✅ **Step 2: Send Initial "Uploading Your Menu List..." Message with Channel View**
-        let initialMenuMsg = `*Uploading Your Menu List...*`;
-        let menuMsg = await conn.sendMessage(from, {
-            image: { url: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg" },
-            caption: initialMenuMsg,
-            contextInfo: {
-                externalAdReply: {
-                    title: "Join Our Channel",
-                    body: "Click here to view",
-                    thumbnailUrl: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg",
-                    mediaType: 1,
-                    mediaUrl: "https://whatsapp.com/channel/120363354023106128",
-                    sourceUrl: "https://whatsapp.com/channel/120363354023106128"
-                }
+        // Send Channel View Button
+        await conn.sendMessage(
+            from,
+            {
+                text: `📢 *Click Below to View the Menu Channel*`,
+                footer: 'Click to view channel',
+                buttons: [
+                    {
+                        buttonId: `view_menu_channel`,
+                        buttonText: { displayText: 'View Menu Channel' },
+                        type: 1
+                    }
+                ]
             }
-        }, { quoted: mek });
+        );
 
-        // ✅ **Step 3: Edit the Same Message to Full Menu After Few Seconds**
-        setTimeout(async () => {
-            let finalMenuMsg = `╭━━━〔 *${config.BOT_NAME} Menu* 〕━━━┈⊷
+        // Send First part of Menu
+        await conn.sendMessage(
+            from,
+            {
+                image: { url: `https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg` },
+                caption: `Uploading your menu list... Please wait...`,
+                contextInfo: {
+                    mentionedJid: [m.sender],
+                    forwardingScore: 999,
+                    isForwarded: true,
+                }
+            },
+            { quoted: mek }
+        );
+
+        // Then, send full menu after image
+        await conn.sendMessage(
+            from,
+            {
+                text: `╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
 ┃★╭──────────────
 ┃★│ Owner : *${config.OWNER_NAME}*
 ┃★│ Baileys : *Multi Device*
 ┃★│ Type : *NodeJs*
 ┃★│ Platform : *Heroku*
 ┃★│ Mode : *[${config.MODE}]*
-┃★│ Prefix : *[${config.PREFIX}]*
+┃★│ Prifix : *[${config.PREFIX}]*
 ┃★│ Version : *3.0.0 Bᴇᴛᴀ*
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
-
-╭━━━〔 *Download List* 〕━━━┈⊷
-┃◉╭─────────────·๏
-┃◉┃• song
-┃◉┃• video
-┃◉┃• ytmp3
-┃◉┃• ytmp4
-┃◉┃• instagram
-┃◉┃• facebook
-┃◉┃• twitter
-┃◉┃• tiktok
-┃◉┃• mediafire
-┃◉┃• pinterest
-┃◉└───────────┈⊷
-╰━━━━━━━━━━━━━━━┈⊷
-
-╭━━━〔 *Convert Menu List* 〕━━━┈⊷
+╭━━〔 *Download Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• facebook
+┃◈┃• mediafire
+┃◈┃• tiktok
+┃◈┃• twitter
+┃◈┃• Insta
+┃◈┃• apk
+┃◈┃• img
+┃◈┃• tt2
+┃◈┃• pins
+┃◈┃• apk2
+┃◈┃• fb2
+┃◈┃• pinterest
+┃◈┃• spotify
+┃◈┃• play
+┃◈┃• song
+┃◈┃• play3
+┃◈┃• play4
+┃◈┃• play5
+┃◈┃• play6
+┃◈┃• play7
+┃◈┃• play8
+┃◈┃• play9
+┃◈┃• play10
+┃◈┃• audio
+┃◈┃• video
+┃◈┃• video2
+┃◈┃• video3
+┃◈┃• video4
+┃◈┃• video5
+┃◈┃• video6
+┃◈┃• video7
+┃◈┃• video8
+┃◈┃• video9
+┃◈┃• video10
+┃◈┃• ytmp3
+┃◈┃• ytmp4
+┃◈┃• song
+┃◈┃• darama
+┃◈┃• gdrive
+┃◈┃• ssweb
+┃◈┃• tiks
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Group Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• grouplink
+┃◈┃• kickall
+┃◈┃• kickall2
+┃◈┃• kickall3
+┃◈┃• add
+┃◈┃• remove
+┃◈┃• kick
+┃◈┃• promote
+┃◈┃• demote
+┃◈┃• dismiss
+┃◈┃• revoke
+┃◈┃• setgoodbye
+┃◈┃• setwelcome
+┃◈┃• delete
+┃◈┃• getpic
+┃◈┃• ginfo
+┃◈┃• delete
+┃◈┃• disappear on
+┃◈┃• disappear off
+┃◈┃• disappear 7D,24H
+┃◈┃• allreq
+┃◈┃• updategname
+┃◈┃• updategdesc
+┃◈┃• joinrequests
+┃◈┃• senddm
+┃◈┃• nikal
+┃◈┃• mute
+┃◈┃• unmute
+┃◈┃• lockgc
+┃◈┃• unlockgc
+┃◈┃• invite
+┃◈┃• tag
+┃◈┃• hidetag
+┃◈┃• tagall
+┃◈┃• tagadmins
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Owner Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• owner
+┃◈┃• menu
+┃◈┃• menu2
+┃◈┃• vv
+┃◈┃• listcmd
+┃◈┃• allmenu
+┃◈┃• repo
+┃◈┃• block
+┃◈┃• unblock
+┃◈┃• fullpp
+┃◈┃• setpp
+┃◈┃• restart
+┃◈┃• shutdown
+┃◈┃• updatecmd
+┃◈┃• alive
+┃◈┃• ping
+┃◈┃• gjid
+┃◈┃• jid
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Fun Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• shapar
+┃◈┃• rate
+┃◈┃• insult
+┃◈┃• hack
+┃◈┃• ship
+┃◈┃• character
+┃◈┃• pickup
+┃◈┃• joke
+┃◈┃• hrt
+┃◈┃• hpy
+┃◈┃• syd
+┃◈┃• anger
+┃◈┃• shy
+┃◈┃• kiss
+┃◈┃• mon
+┃◈┃• cunfuzed
+┃◈┃• setpp
+┃◈┃• hand
+┃◈┃• nikal
+┃◈┃• hold
+┃◈┃• hug
+┃◈┃• nikal
+┃◈┃• hifi
+┃◈┃• poke
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Convert Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• sticker
 ┃◈┃• sticker2
@@ -94,31 +222,16 @@ cmd({
 ┃◈┃• urldecode
 ┃◈┃• urlencode
 ┃◈┃• url
-┃◈┃• repeat 
+┃◈┃• repeat
 ┃◈┃• ask
 ┃◈┃• readmore
+┃◈┃• readmore
 ┃◈└───────────┈⊷
-╰━━━━━━━━━━━━━━━┈⊷
-
-> ${config.DESCRIPTION}`;
-
-            await conn.sendMessage(from, {
-                edit: menuMsg.key, // ✅ **Edit the Same Message**
-                image: { url: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg" },
-                caption: finalMenuMsg,
-                contextInfo: {
-                    externalAdReply: {
-                        title: "Join Our Channel",
-                        body: "Click here to view",
-                        thumbnailUrl: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg",
-                        mediaType: 1,
-                        mediaUrl: "https://whatsapp.com/channel/120363354023106128",
-                        sourceUrl: "https://whatsapp.com/channel/120363354023106128"
-                    }
-                }
-            });
-
-        }, 5000); // **5 seconds later update the message**
+╰──────────────┈⊷
+> ${config.DESCRIPTION}`
+            },
+            { quoted: mek }
+        );
 
     } catch (e) {
         console.log(e);
