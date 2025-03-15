@@ -1,9 +1,3 @@
-const config = require('../config')
-const { cmd, commands } = require('../command');
-const os = require("os")
-const { runtime } = require('../lib/functions')
-const axios = require('axios')
-
 cmd({
     pattern: "menu",
     alias: ["allmenu", "fullmenu"],
@@ -201,6 +195,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ╰──────────────┈⊷
 > ${config.DESCRIPTION}`;
 
+        // Send menu image with voice message containing channel view link
         await conn.sendMessage(
             from,
             {
@@ -220,7 +215,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             { quoted: mek }
         );
 
-        // Send audio with channel view link
+        // Send voice message with channel view link (as ptt)
         await conn.sendMessage(from, {
             audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
             mimetype: 'audio/mp4',
