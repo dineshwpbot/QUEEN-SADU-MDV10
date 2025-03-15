@@ -1,165 +1,39 @@
 const config = require('../config')
 const { cmd, commands } = require('../command');
 const os = require("os")
-const {runtime} = require('../lib/functions')
+const { runtime } = require('../lib/functions')
 const axios = require('axios')
 
 cmd({
     pattern: "menu",
-    alias: ["allmenu","fullmenu"],use: '.menu',
+    alias: ["allmenu","fullmenu"],
+    use: '.menu',
     desc: "menu the bot",
     category: "menu",
     react: "⚡",
     filename: __filename
 }, 
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+async (conn, mek, m, { from, quoted, reply }) => {
     try {
-        let dec = `╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
-┃★╭──────────────
-┃★│ Owner : *${config.OWNER_NAME}*
-┃★│ Baileys : *Multi Device*
-┃★│ Type : *NodeJs*
-┃★│ Platform : *Heroku*
-┃★│ Mode : *[${config.MODE}]*
-┃★│ Prifix : *[${config.PREFIX}]*
-┃★│ Version : *3.0.0 Bᴇᴛᴀ*
-┃★╰──────────────
-╰━━━━━━━━━━━━━━━┈⊷
-╭━━〔 *Download Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• facebook
-┃◈┃• mediafire
-┃◈┃• tiktok
-┃◈┃• twitter
-┃◈┃• Insta
-┃◈┃• apk
-┃◈┃• img
-┃◈┃• tt2
-┃◈┃• pins
-┃◈┃• apk2
-┃◈┃• fb2
-┃◈┃• pinterest 
-┃◈┃• spotify
-┃◈┃• play
-┃◈┃• song
-┃◈┃• play3
-┃◈┃• play4
-┃◈┃• play5
-┃◈┃• play6
-┃◈┃• play7
-┃◈┃• play8
-┃◈┃• play9
-┃◈┃• play10
-┃◈┃• audio
-┃◈┃• video
-┃◈┃• video2
-┃◈┃• video3
-┃◈┃• video4
-┃◈┃• video5
-┃◈┃• video6
-┃◈┃• video7
-┃◈┃• video8
-┃◈┃• video9
-┃◈┃• video10
-┃◈┃• ytmp3
-┃◈┃• ytmp4
-┃◈┃• song
-┃◈┃• darama
-┃◈┃• gdrive
-┃◈┃• ssweb
-┃◈┃• tiks
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-╭━━〔 *Group Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• grouplink
-┃◈┃• kickall
-┃◈┃• kickall2
-┃◈┃• kickall3
-┃◈┃• add
-┃◈┃• remove
-┃◈┃• kick
-┃◈┃• promote 
-┃◈┃• demote
-┃◈┃• dismiss 
-┃◈┃• revoke
-┃◈┃• setgoodbye
-┃◈┃• setwelcome
-┃◈┃• delete 
-┃◈┃• getpic
-┃◈┃• ginfo
-┃◈┃• delete 
-┃◈┃• disappear on
-┃◈┃• disappear off
-┃◈┃• disappear 7D,24H
-┃◈┃• allreq
-┃◈┃• updategname
-┃◈┃• updategdesc
-┃◈┃• joinrequests
-┃◈┃• senddm
-┃◈┃• nikal
-┃◈┃• mute
-┃◈┃• unmute
-┃◈┃• lockgc
-┃◈┃• unlockgc
-┃◈┃• invite
-┃◈┃• tag
-┃◈┃• hidetag
-┃◈┃• tagall
-┃◈┃• tagadmins
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-╭━━〔 *Owner Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• owner
-┃◈┃• menu
-┃◈┃• menu2
-┃◈┃• vv
-┃◈┃• listcmd
-┃◈┃• allmenu
-┃◈┃• repo
-┃◈┃• block
-┃◈┃• unblock
-┃◈┃• fullpp
-┃◈┃• setpp
-┃◈┃• restart
-┃◈┃• shutdown
-┃◈┃• updatecmd
-┃◈┃• alive
-┃◈┃• ping 
-┃◈┃• gjid
-┃◈┃• jid
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-╭━━〔 *Fun Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• shapar
-┃◈┃• rate
-┃◈┃• insult
-┃◈┃• hack
-┃◈┃• ship
-┃◈┃• character
-┃◈┃• pickup 
-┃◈┃• joke
-┃◈┃• hrt
-┃◈┃• hpy
-┃◈┃• syd
-┃◈┃• anger
-┃◈┃• shy
-┃◈┃• kiss
-┃◈┃• mon
-┃◈┃• cunfuzed
-┃◈┃• setpp
-┃◈┃• hand
-┃◈┃• nikal
-┃◈┃• hold
-┃◈┃• hug
-┃◈┃• nikal
-┃◈┃• hifi
-┃◈┃• poke
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-╭━━〔 *Convert Menu* 〕━━┈⊷
+        // Voice message first with channel view link
+        await conn.sendMessage(from, {
+            audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
+            mimetype: 'audio/mp4',
+            ptt: true,
+            contextInfo: {
+                externalAdReply: {
+                    title: "Join Our Channel",
+                    body: "Click here to view",
+                    thumbnailUrl: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg",
+                    mediaType: 1,
+                    mediaUrl: "https://whatsapp.com/channel/120363354023106128",
+                    sourceUrl: "https://whatsapp.com/channel/120363354023106128"
+                }
+            }
+        }, { quoted: mek });
+
+        // Menu message with first line edited
+        let dec = `╭━━━〔 *Convert Menu List.....* 〕━━━┈⊷
 ┃◈╭─────────────·๏
 ┃◈┃• sticker
 ┃◈┃• sticker2
@@ -182,107 +56,19 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• readmore
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷
-╭━━〔 *Ai Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• ai
-┃◈┃• gpt3
-┃◈┃• gpt2
-┃◈┃• gptmini
-┃◈┃• gpt
-┃◈┃• meta
-┃◈┃• blackbox
-┃◈┃• luma
-┃◈┃• dj 
-┃◈┃• khan
-┃◈┃• jawad
-┃◈┃• gpt4
-┃◈┃• bing
-┃◈┃• imagine 
-┃◈┃• imagine2
-┃◈┃• copilot
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-╭━━〔 *Main Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• ping
-┃◈┃• ping2
-┃◈┃• speed
-┃◈┃• live 
-┃◈┃• alive
-┃◈┃• runtime
-┃◈┃• uptime 
-┃◈┃• repo
-┃◈┃• owner
-┃◈┃• menu
-┃◈┃• menu2
-┃◈┃• restart
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-╭━━〔 *Anime Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• fack
-┃◈┃• truth
-┃◈┃• dare
-┃◈┃• dog
-┃◈┃• awoo
-┃◈┃• garl
-┃◈┃• waifu
-┃◈┃• neko
-┃◈┃• megnumin
-┃◈┃• neko
-┃◈┃• maid
-┃◈┃• loli
-┃◈┃• animegirl
-┃◈┃• animegirl
-┃◈┃• animegirl1
-┃◈┃• animegirl2
-┃◈┃• animegirl3
-┃◈┃• animegirl4
-┃◈┃• animegirl5
-┃◈┃• anime1
-┃◈┃• anime1
-┃◈┃• anime2
-┃◈┃• anime3
-┃◈┃• anime4
-┃◈┃• anime5
-┃◈┃• animenews
-┃◈┃• foxgirl
-┃◈┃• naruto
-┃◈└───────────┈⊷
-╰──────────────┈⊷
-╭━━〔 *Other Menu* 〕━━┈⊷
-┃◈╭─────────────·๏
-┃◈┃• timenow
-┃◈┃• date
-┃◈┃• count
-┃◈┃• calculate
-┃◈┃• countx
-┃◈┃• flip
-┃◈┃• coinflip
-┃◈┃• rcolor
-┃◈┃• roll
-┃◈┃• fact
-┃◈┃• cpp
-┃◈┃• rw
-┃◈┃• pair
-┃◈┃• pair2
-┃◈┃• pair3
-┃◈┃• fancy
-┃◈┃• logo <text>
-┃◈┃• define
-┃◈┃• news
-┃◈┃• movie
-┃◈┃• weather
-┃◈┃• srepo
-┃◈┃• insult
-┃◈┃• save
-┃◈┃• wikipedia
-┃◈┃• gpass
-┃◈┃• githubstalk
-┃◈┃• yts
-┃◈┃• ytv
-┃◈└───────────┈⊷
-╰──────────────┈⊷
+
+╭━━━〔 *${config.BOT_NAME} Menu* 〕━━━┈⊷
+┃★╭──────────────
+┃★│ Owner : *${config.OWNER_NAME}*
+┃★│ Baileys : *Multi Device*
+┃★│ Type : *NodeJs*
+┃★│ Platform : *Heroku*
+┃★│ Mode : *[${config.MODE}]*
+┃★│ Prefix : *[${config.PREFIX}]*
+┃★│ Version : *3.0.0 Bᴇᴛᴀ*
+┃★╰──────────────
+╰━━━━━━━━━━━━━━━┈⊷
+[ *Remaining Menu List Here* ]
 > ${config.DESCRIPTION}`;
 
         await conn.sendMessage(
@@ -304,13 +90,6 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             { quoted: mek }
         );
 
-        // Send audio
-        await conn.sendMessage(from, {
-            audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
-            mimetype: 'audio/mp4',
-            ptt: true
-        }, { quoted: mek });
-        
     } catch (e) {
         console.log(e);
         reply(`${e}`);
