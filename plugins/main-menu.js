@@ -13,8 +13,8 @@ cmd({
 },
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        // First message (Voice + Channel View Button)
-        let menuMessage = await conn.sendMessage(
+        // First send Voice + Channel View Button
+        await conn.sendMessage(
             from,
             {
                 audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
@@ -40,7 +40,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             }
         );
 
-        // Send First part of Menu
+        // Send the message "Uploading your menu list..." with image
         await conn.sendMessage(
             from,
             {
@@ -55,7 +55,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             { quoted: mek }
         );
 
-        // Then, send full menu after image
+        // Now send the full updated menu with channel view button again
         await conn.sendMessage(
             from,
             {
@@ -228,11 +228,19 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• readmore
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷
-> ${config.DESCRIPTION}`
+> ${config.DESCRIPTION}`,
+                footer: 'Click to view channel',
+                buttons: [
+                    {
+                        buttonId: `view_menu_channel`,
+                        buttonText: { displayText: 'View Menu Channel' },
+                        type: 1
+                    }
+                ]
             },
             { quoted: mek }
         );
-
+        
     } catch (e) {
         console.log(e);
         reply(`${e}`);
