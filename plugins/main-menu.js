@@ -1,7 +1,7 @@
 const config = require('../config')
 const { cmd, commands } = require('../command');
 const os = require("os")
-const {runtime} = require('../lib/functions')
+const { runtime } = require('../lib/functions')
 const axios = require('axios')
 
 cmd({
@@ -22,7 +22,13 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             ptt: true
         }, { quoted: mek });
 
-        // Then send the menu and channel link
+        // Send Channel view link
+        const channelLink = 'https://youtube.com/channel/UCxyz12345'; // Replace with actual channel link
+        await conn.sendMessage(from, { 
+            text: `Channel View Link: ${channelLink}` 
+        }, { quoted: mek });
+
+        // Then send the menu
         let dec = `ඔබට සුබ දවසක්! 
 
 ╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
@@ -140,6 +146,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• ping 
 ┃◈┃• gjid
 ┃◈┃• jid
+┃◈┃• channelview
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷
 ╭━━〔 *Fun Menu* 〕━━┈⊷
@@ -191,6 +198,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• repeat 
 ┃◈┃• ask
 ┃◈┃• readmore
+┃◈┃• poll
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷
 ╭━━〔 *Ai Menu* 〕━━┈⊷
@@ -315,7 +323,6 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             },
             { quoted: mek }
         );
-
     } catch (e) {
         console.log(e);
         reply(`${e}`);
