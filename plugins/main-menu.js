@@ -1,65 +1,38 @@
+const config = require('../config')
 const { cmd, commands } = require('../command');
-const { config } = require('../config');
-const axios = require('axios');
+const os = require("os")
+const {runtime} = require('../lib/functions')
+const axios = require('axios')
 
 cmd({
     pattern: "menu",
-    alias: ["allmenu", "fullmenu"],
-    use: '.menu',
+    alias: ["allmenu","fullmenu"],use: '.menu',
     desc: "menu the bot",
     category: "menu",
     react: "⚡",
     filename: __filename
-},
-async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+}, 
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        // First send Voice + Channel View Button
-        await conn.sendMessage(
-            from,
-            {
-                audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
-                mimetype: 'audio/mp4',
-                ptt: true
-            },
-            { quoted: mek }
-        );
-
-        // Send Channel View Button
-        await conn.sendMessage(
-            from,
-            {
-                text: `📢 *Click Below to View the Menu Channel*`,
-                footer: 'Click to view channel',
-                buttons: [
-                    {
-                        buttonId: `view_menu_channel`,
-                        buttonText: { displayText: 'View Menu Channel' },
-                        type: 1
-                    }
-                ]
-            }
-        );
-
-        // Send the message "Uploading your menu list..." with image
-        await conn.sendMessage(
-            from,
-            {
-                image: { url: `https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg` },
-                caption: `Uploading your menu list... Please wait...`,
-                contextInfo: {
-                    mentionedJid: [m.sender],
-                    forwardingScore: 999,
-                    isForwarded: true,
+        // Send audio first with channel view
+        await conn.sendMessage(from, {
+            audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
+            mimetype: 'audio/mp4',
+            ptt: true,
+            contextInfo: {
+                mentionedJid: [m.sender],
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363354023106128@newsletter',
+                    newsletterName: 'ᴍʀ ᴅɪɴᴇꜱʜ',
+                    serverMessageId: 143
                 }
-            },
-            { quoted: mek }
-        );
+            }
+        }, { quoted: mek });
 
-        // Now send the full updated menu with channel view button again
-        await conn.sendMessage(
-            from,
-            {
-                text: `╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
+        // Send menu image with channel view
+        let dec = `╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
 ┃★╭──────────────
 ┃★│ Owner : *${config.OWNER_NAME}*
 ┃★│ Baileys : *Multi Device*
@@ -83,7 +56,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• pins
 ┃◈┃• apk2
 ┃◈┃• fb2
-┃◈┃• pinterest
+┃◈┃• pinterest 
 ┃◈┃• spotify
 ┃◈┃• play
 ┃◈┃• song
@@ -124,16 +97,16 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• add
 ┃◈┃• remove
 ┃◈┃• kick
-┃◈┃• promote
+┃◈┃• promote 
 ┃◈┃• demote
-┃◈┃• dismiss
+┃◈┃• dismiss 
 ┃◈┃• revoke
 ┃◈┃• setgoodbye
 ┃◈┃• setwelcome
-┃◈┃• delete
+┃◈┃• delete 
 ┃◈┃• getpic
 ┃◈┃• ginfo
-┃◈┃• delete
+┃◈┃• delete 
 ┃◈┃• disappear on
 ┃◈┃• disappear off
 ┃◈┃• disappear 7D,24H
@@ -171,7 +144,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• shutdown
 ┃◈┃• updatecmd
 ┃◈┃• alive
-┃◈┃• ping
+┃◈┃• ping 
 ┃◈┃• gjid
 ┃◈┃• jid
 ┃◈└───────────┈⊷
@@ -184,7 +157,7 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• hack
 ┃◈┃• ship
 ┃◈┃• character
-┃◈┃• pickup
+┃◈┃• pickup 
 ┃◈┃• joke
 ┃◈┃• hrt
 ┃◈┃• hpy
@@ -222,27 +195,128 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• urldecode
 ┃◈┃• urlencode
 ┃◈┃• url
-┃◈┃• repeat
+┃◈┃• repeat 
 ┃◈┃• ask
-┃◈┃• readmore
 ┃◈┃• readmore
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷
-> ${config.DESCRIPTION}`,
-                footer: 'Click to view channel',
-                buttons: [
-                    {
-                        buttonId: `view_menu_channel`,
-                        buttonText: { displayText: 'View Menu Channel' },
-                        type: 1
+╭━━〔 *Ai Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• ai
+┃◈┃• gpt3
+┃◈┃• gpt2
+┃◈┃• gptmini
+┃◈┃• gpt
+┃◈┃• meta
+┃◈┃• blackbox
+┃◈┃• luma
+┃◈┃• dj 
+┃◈┃• khan
+┃◈┃• jawad
+┃◈┃• gpt4
+┃◈┃• bing
+┃◈┃• imagine 
+┃◈┃• imagine2
+┃◈┃• copilot
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Main Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• ping
+┃◈┃• ping2
+┃◈┃• speed
+┃◈┃• live 
+┃◈┃• alive
+┃◈┃• runtime
+┃◈┃• uptime 
+┃◈┃• repo
+┃◈┃• owner
+┃◈┃• menu
+┃◈┃• menu2
+┃◈┃• restart
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Anime Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• fack
+┃◈┃• truth
+┃◈┃• dare
+┃◈┃• dog
+┃◈┃• awoo
+┃◈┃• garl
+┃◈┃• waifu
+┃◈┃• neko
+┃◈┃• megnumin
+┃◈┃• neko
+┃◈┃• maid
+┃◈┃• loli
+┃◈┃• animegirl
+┃◈┃• animegirl
+┃◈┃• animegirl1
+┃◈┃• animegirl2
+┃◈┃• animegirl3
+┃◈┃• animegirl4
+┃◈┃• animegirl5
+┃◈┃• anime1
+┃◈┃• anime1
+┃◈┃• anime2
+┃◈┃• anime3
+┃◈┃• anime4
+┃◈┃• anime5
+┃◈┃• animenews
+┃◈┃• foxgirl
+┃◈┃• naruto
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Other Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• timenow
+┃◈┃• date
+┃◈┃• count
+┃◈┃• calculate
+┃◈┃• countx
+┃◈┃• flip
+┃◈┃• coinflip
+┃◈┃• rcolor
+┃◈┃• roll
+┃◈┃• fact
+┃◈┃• cpp
+┃◈┃• rw
+┃◈┃• pair
+┃◈┃• pair2
+┃◈┃• pair3
+┃◈┃• fancy
+┃◈┃• logo <text>
+┃◈┃• define
+┃◈┃• news
+┃◈┃• movie
+┃◈┃• weather
+┃◈┃• srepo
+┃◈┃• insult
+┃◈┃• save
+┃◈┃• wikipedia
+┃◈┃• gpass
+┃◈┃• githubstalk
+┃◈┃• yts
+┃◈┃• ytv
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+> ${config.DESCRIPTION}`;
+
+        await conn.sendMessage(
+            from,
+            {
+                image: { url: `https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg` },
+                caption: dec,
+                contextInfo: {
+                    mentionedJid: [m.sender],
+                    forwardingScore: 999,
+                    isForwarded: true,
+                    forwardedNewsletterMessageInfo: {
+                        newsletterJid: '120363354023106128@newsletter',
+                        newsletterName: 'ᴍʀ ᴅɪɴᴇꜱʜ',
+                        serverMessageId: 143
                     }
-                ]
+                }
             },
-            { quoted: mek }
-        );
-        
-    } catch (e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
+            { quoted
