@@ -140,9 +140,161 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
 ┃◈┃• ping 
 ┃◈┃• gjid
 ┃◈┃• jid
-┃◈┃• channel: [Your Channel](https://your-channel-link.com)
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷
+╭━━〔 *Fun Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• shapar
+┃◈┃• rate
+┃◈┃• insult
+┃◈┃• hack
+┃◈┃• ship
+┃◈┃• character
+┃◈┃• pickup 
+┃◈┃• joke
+┃◈┃• hrt
+┃◈┃• hpy
+┃◈┃• syd
+┃◈┃• anger
+┃◈┃• shy
+┃◈┃• kiss
+┃◈┃• mon
+┃◈┃• cunfuzed
+┃◈┃• setpp
+┃◈┃• hand
+┃◈┃• nikal
+┃◈┃• hold
+┃◈┃• hug
+┃◈┃• nikal
+┃◈┃• hifi
+┃◈┃• poke
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Convert Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• sticker
+┃◈┃• sticker2
+┃◈┃• emojimix
+┃◈┃• fancy
+┃◈┃• take
+┃◈┃• tomp3
+┃◈┃• tts
+┃◈┃• trt
+┃◈┃• base64
+┃◈┃• unbase64
+┃◈┃• binary
+┃◈┃• dbinary
+┃◈┃• tinyurl
+┃◈┃• urldecode
+┃◈┃• urlencode
+┃◈┃• url
+┃◈┃• repeat 
+┃◈┃• ask
+┃◈┃• readmore
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Ai Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• ai
+┃◈┃• gpt3
+┃◈┃• gpt2
+┃◈┃• gptmini
+┃◈┃• gpt
+┃◈┃• meta
+┃◈┃• blackbox
+┃◈┃• luma
+┃◈┃• dj 
+┃◈┃• khan
+┃◈┃• jawad
+┃◈┃• gpt4
+┃◈┃• bing
+┃◈┃• imagine 
+┃◈┃• imagine2
+┃◈┃• copilot
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Main Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• ping
+┃◈┃• ping2
+┃◈┃• speed
+┃◈┃• live 
+┃◈┃• alive
+┃◈┃• runtime
+┃◈┃• uptime 
+┃◈┃• repo
+┃◈┃• owner
+┃◈┃• menu
+┃◈┃• menu2
+┃◈┃• restart
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Anime Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• fack
+┃◈┃• truth
+┃◈┃• dare
+┃◈┃• dog
+┃◈┃• awoo
+┃◈┃• garl
+┃◈┃• waifu
+┃◈┃• neko
+┃◈┃• megnumin
+┃◈┃• neko
+┃◈┃• maid
+┃◈┃• loli
+┃◈┃• animegirl
+┃◈┃• animegirl
+┃◈┃• animegirl1
+┃◈┃• animegirl2
+┃◈┃• animegirl3
+┃◈┃• animegirl4
+┃◈┃• animegirl5
+┃◈┃• anime1
+┃◈┃• anime1
+┃◈┃• anime2
+┃◈┃• anime3
+┃◈┃• anime4
+┃◈┃• anime5
+┃◈┃• animenews
+┃◈┃• foxgirl
+┃◈┃• naruto
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+╭━━〔 *Other Menu* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• timenow
+┃◈┃• date
+┃◈┃• count
+┃◈┃• calculate
+┃◈┃• countx
+┃◈┃• flip
+┃◈┃• coinflip
+┃◈┃• rcolor
+┃◈┃• roll
+┃◈┃• fact
+┃◈┃• cpp
+┃◈┃• rw
+┃◈┃• pair
+┃◈┃• pair2
+┃◈┃• pair3
+┃◈┃• fancy
+┃◈┃• logo <text>
+┃◈┃• define
+┃◈┃• news
+┃◈┃• movie
+┃◈┃• weather
+┃◈┃• srepo
+┃◈┃• insult
+┃◈┃• save
+┃◈┃• wikipedia
+┃◈┃• gpass
+┃◈┃• githubstalk
+┃◈┃• yts
+┃◈┃• ytv
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+
 > ${config.DESCRIPTION}`;
 
         await conn.sendMessage(
