@@ -16,17 +16,21 @@ cmd({
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
         // Voice message first
-        await conn.sendMessage(from, {
-            audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
-            mimetype: 'audio/mp4',
-            ptt: true
-        }, { quoted: mek });
-
-        // Send Channel view link
-        const channelLink = 'https://youtube.com/channel/UCxyz12345'; // Replace with actual channel link
         await conn.sendMessage(from, { 
-            text: `Channel View Link: ${channelLink}` 
-        }, { quoted: mek });
+    audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' }, 
+    mimetype: 'audio/mp4', 
+    ptt: true,
+    contextInfo: { 
+        mentionedJid: [m.sender], 
+        forwardingScore: 999, 
+        isForwarded: true, 
+        forwardedNewsletterMessageInfo: { 
+            newsletterJid: '120363354023106128@newsletter', 
+            newsletterName: 'ᴍʀ ᴅɪɴᴇꜱʜ', 
+            serverMessageId: 143 
+        } 
+    } 
+}, { quoted: mek });
 
         // Then send the menu
         let dec = `ඔබට සුබ දවසක්! 
