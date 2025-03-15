@@ -3,13 +3,14 @@ const {
   commands
 } = require("../command");
 const path = require('path');
+const fs = require('fs');
 
 cmd({
-  'pattern': "getstatus",
+  'pattern': "save",
   'react': '📁',
-  'desc': "Bot owner එකේ හෝ අනෙක් අයගේ status එක forward කරන්න.",
+  'desc': "Save and forward a media message (image, video, or audio).",
   'category': "media",
-  'use': ".status",
+  'use': ".save",
   'filename': __filename
 }, async (_0x2ecf0f, _0x3c0350, _0x2b9c8c, {
   quoted: _0x2103b0,
@@ -18,7 +19,7 @@ cmd({
 }) => {
   try {
     if (!_0x2103b0) {
-      return _0x4f53e2("❌ status message එක reply කරලා .status command එක run කරන්න.");
+      return _0x4f53e2("❌ Reply to a media message (image, video, or audio) with the `.save` command.");
     }
 
     const _0x3debb4 = _0x2103b0.mtype;
@@ -42,28 +43,28 @@ cmd({
       _0x5af1b3 = path.resolve(_0x1a523a);
     }
 
-    // Forward logic
+    // Save the message
     const _0x4acfdc = {
       'caption': _0x435112 || ''
     };
 
     if (_0x21e1be) {
-      _0x4acfdc[_0x21e1be] = {
-        'url': 'file://' + _0x5af1b3
-      };
+      // Read media file as buffer and send it directly
+      const mediaBuffer = fs.readFileSync(_0x5af1b3);
+      _0x4acfdc[_0x21e1be] = mediaBuffer;
     } else {
-      // If it's a text message, send the text
+      // If it's a text message, save the text
       _0x4acfdc.text = _0x2103b0.text || 'No caption';
     }
 
-    // Forward the message to the requested user
+    // Forward the saved message with buffer
     await _0x2ecf0f.sendMessage(_0x2b9c8c.sender, _0x4acfdc, {
       'quoted': _0x3c0350
     });
 
-    await _0x4f53e2("✅ status message එක සාර්ථකව forward කරන ලදී.");
+    await _0x4f53e2("✅ Successfully saved and forwarded the media.");
   } catch (_0x1791ca) {
     console.error(_0x1791ca);
-    _0x4f53e2("❌ status forward කිරීමේදී දෝෂයක් සිදුවිණි. කරුණාකර නැවත උත්සාහ කරන්න.");
+    _0x4f53e2("❌ Failed to save and forward the media. Please try again.");
   }
 });
