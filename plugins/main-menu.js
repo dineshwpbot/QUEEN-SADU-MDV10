@@ -14,7 +14,7 @@ cmd({
 }, 
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        // First send the audio (Voice message)
+        // First send the voice message
         await conn.sendMessage(from, {
             audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
             mimetype: 'audio/mp4',
@@ -184,6 +184,11 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
             },
             { quoted: mek }
         );
+
+        // Sending Channel View
+        const channelView = `*Channel View*:\n\n*Owner Name*: ${config.OWNER_NAME}\n*Bot Version*: 3.0.0\n*Bot Mode*: [${config.MODE}]\n*Bot Platform*: Heroku\n*Prefix*: [${config.PREFIX}]`;
+
+        await conn.sendMessage(from, { text: channelView }, { quoted: mek });
 
     } catch (e) {
         console.log(e);
