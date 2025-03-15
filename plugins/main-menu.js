@@ -30,11 +30,21 @@ cmd({
             }
         }, { quoted: mek });
 
-        // ✅ **Step 2: Send Initial "Uploading Your Menu List..." Message**
+        // ✅ **Step 2: Send Initial "Uploading Your Menu List..." Message with Channel View**
         let initialMenuMsg = `*Uploading Your Menu List...*`;
         let menuMsg = await conn.sendMessage(from, {
             image: { url: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg" },
-            caption: initialMenuMsg
+            caption: initialMenuMsg,
+            contextInfo: {
+                externalAdReply: {
+                    title: "Join Our Channel",
+                    body: "Click here to view",
+                    thumbnailUrl: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg",
+                    mediaType: 1,
+                    mediaUrl: "https://whatsapp.com/channel/120363354023106128",
+                    sourceUrl: "https://whatsapp.com/channel/120363354023106128"
+                }
+            }
         }, { quoted: mek });
 
         // ✅ **Step 3: Edit the Same Message to Full Menu After Few Seconds**
@@ -95,7 +105,17 @@ cmd({
             await conn.sendMessage(from, {
                 edit: menuMsg.key, // ✅ **Edit the Same Message**
                 image: { url: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg" },
-                caption: finalMenuMsg
+                caption: finalMenuMsg,
+                contextInfo: {
+                    externalAdReply: {
+                        title: "Join Our Channel",
+                        body: "Click here to view",
+                        thumbnailUrl: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg",
+                        mediaType: 1,
+                        mediaUrl: "https://whatsapp.com/channel/120363354023106128",
+                        sourceUrl: "https://whatsapp.com/channel/120363354023106128"
+                    }
+                }
             });
 
         }, 5000); // **5 seconds later update the message**
