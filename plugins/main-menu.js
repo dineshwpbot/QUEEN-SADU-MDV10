@@ -9,7 +9,7 @@ cmd({
 }, 
 async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
     try {
-        // Send the audio message first
+        // Voice message first
         await conn.sendMessage(from, {
             audio: { url: 'https://github.com/mrdinesh595/Mssadu/raw/refs/heads/main/database/queensadumenu.mp3' },
             mimetype: 'audio/mp4',
@@ -17,7 +17,9 @@ async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sen
         }, { quoted: mek });
 
         // Then send the menu and channel link
-        let dec = `╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
+        let dec = `ඔබට සුබ දවසක්! 
+
+╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
 ┃★╭──────────────
 ┃★│ Owner : *${config.OWNER_NAME}*
 ┃★│ Baileys : *Multi Device*
