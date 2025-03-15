@@ -30,11 +30,14 @@ cmd({
             }
         }, { quoted: mek });
 
-        // ✅ **Step 2: Send Initial "Upload Your Menu List..." Message**
+        // ✅ **Step 2: Send Initial "Uploading Your Menu List..." Message**
         let initialMenuMsg = `*Uploading Your Menu List...*`;
-        let menuMsg = await conn.sendMessage(from, { text: initialMenuMsg }, { quoted: mek });
+        let menuMsg = await conn.sendMessage(from, {
+            image: { url: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg" },
+            caption: initialMenuMsg
+        }, { quoted: mek });
 
-        // ✅ **Step 3: Update Message to Full Menu After Few Seconds**
+        // ✅ **Step 3: Edit the Same Message to Full Menu After Few Seconds**
         setTimeout(async () => {
             let finalMenuMsg = `╭━━━〔 *${config.BOT_NAME} Menu* 〕━━━┈⊷
 ┃★╭──────────────
@@ -89,7 +92,12 @@ cmd({
 
 > ${config.DESCRIPTION}`;
 
-            await conn.sendMessage(from, { text: finalMenuMsg }, { quoted: menuMsg });
+            await conn.sendMessage(from, {
+                edit: menuMsg.key, // ✅ **Edit the Same Message**
+                image: { url: "https://i.postimg.cc/q7QwF3JS/20250309-015608.jpg" },
+                caption: finalMenuMsg
+            });
+
         }, 5000); // **5 seconds later update the message**
 
     } catch (e) {
