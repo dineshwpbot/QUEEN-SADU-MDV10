@@ -17,7 +17,25 @@ const voiceLinks = [
 'https://files.catbox.moe/6pzpfr.mp3',
 'https://files.catbox.moe/dh3724.mp3',
 'https://files.catbox.moe/u6yge7.mp3',
-'https://files.catbox.moe/ciierd.mp3'
+'https://files.catbox.moe/ciierd.mp3',
+'https://files.catbox.moe/b05qvd.mp3',
+'https://files.catbox.moe/w4w5y4.mp3',
+'https://files.catbox.moe/21wlvr.mp3',
+'https://files.catbox.moe/lun14u.mp3',
+'https://files.catbox.moe/7g9vsa.mp3',
+'https://files.catbox.moe/jga5ad.mp3',
+'https://files.catbox.moe/pa4760.mp3',
+'https://files.catbox.moe/5w8vn2.mp3',
+'https://files.catbox.moe/n2qj1a.mp3',
+'https://files.catbox.moe/o38jkp.mp3',
+'https://files.catbox.moe/i88eyq.mp3',
+'https://files.catbox.moe/et8fcl.mp3',
+'https://files.catbox.moe/c7lks6.mp3',
+'https://files.catbox.moe/mjq16o.mp3',
+'https://files.catbox.moe/97q2ig.mp3',
+'https://files.catbox.moe/6l9ush.mp3',
+'https://files.catbox.moe/qvxtep.mp3',
+'https://files.catbox.moe/kmoy0h.mp3'   
     ];
 
 cmd({
